@@ -1,9 +1,6 @@
 import React from 'react';
 
-interface IItem {
-    id: string;
-    title: string;
-}
+import { IItem } from '../types/todo'
 
 interface IProps {
     todos: IItem[]
