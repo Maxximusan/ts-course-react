@@ -3,7 +3,8 @@ import React from 'react';
 import { IItem } from '../types/todo'
 
 interface IProps {
-    todos: IItem[]
+    todos: IItem[];
+    onRemoveTodo: (id: string) => void
 }
 
 // interface IState {
@@ -17,7 +18,8 @@ const TodoList: React.FC<IProps> = (props) => {
                 return (
                     <li key={item.id}>
                         <div>{ item.id}</div>
-                        <div>{ item.title}</div>
+                        <div>{item.title}</div>
+                        <button onClick={props.onRemoveTodo.bind(this, item.id)}>Remove</button>
                     </li>
                 )
             })}

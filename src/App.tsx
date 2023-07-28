@@ -15,10 +15,21 @@ const App: React.FC = () => {
     })
   }
 
+
+  function todoRemoveHandler(id: string): void {
+    setTodos((prevTodos) => {
+      return prevTodos.filter((item) => {
+        return item.id !== id
+      })
+    
+    })
+    
+  }
+
   return (
     <div className="App">
       <AddTodo onAddTodo={ todoAddHandler} />
-      <TodoList todos={ todos } />
+      <TodoList todos={todos} onRemoveTodo={ todoRemoveHandler} />
     </div>
   );
 }
