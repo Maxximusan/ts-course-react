@@ -1,15 +1,25 @@
 import React, {useState} from 'react';
 
+
 import TodoList from './components/TodoList'
 import AddTodo from './components/AddTodo';
 
 import { Product } from './components/Product'
-import {products} from './data/products'
+// import {products} from './data/products'
 import { IItem } from './types/todo'
+import { useProducts} from './hooks/products'
+import { Loader } from './components/Loader'
+import { ErrorMessage } from './components/ErrorMessage';
+import {Modal} from './components/Modal'
+import { CreateProduct } from './components/CreateProduct';
+
+
 
 const App: React.FC = () => {
   const [todos, setTodos] = useState<IItem[]>([])
   const [count, setCount] = useState(0)
+ 
+  const { loading, error, products} = useProducts()
 
   function todoAddHandler(todo: IItem) {
     setTodos((prevTodos) => {
@@ -48,16 +58,23 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <div className='border border-purple-700'>
-      <h1> Start practicing </h1>
-      <button className='m-4 p-4 border border-green-900' onClick={Increase}> Increase!</button>
-      <button className='m-4 p-4 border border-red-700' onClick={Decrease}> Decrease!</button>
+        <h1> Start practicing </h1>
+        <button className='m-4 p-4 border border-green-900' onClick={Increase}> Increase!</button>
+        <button className='m-4 p-4 border border-red-700' onClick={Decrease}> Decrease!</button>
       </div>
-      <Product prod={products[0]}/>
-      <Product prod={products[1]}/>
 
+      <div className=' container mx-auto max-w-2xl pt-5'>
+        {loading && <Loader/>} 
+        {error && <ErrorMessage error={error}/>}
+        {products.map(product => <Product prod={product} key={product.id}/>)}
+      </div>
+
+<Modal title='Create a new product'> 
+  <CreateProduct />
+</Modal>
       <div className='mt-14'>
-      <AddTodo onAddTodo={ todoAddHandler} />
-      <TodoList todos={todos} onRemoveTodo={ todoRemoveHandler} />
+        <AddTodo onAddTodo={ todoAddHandler} />
+        <TodoList todos={todos} onRemoveTodo={ todoRemoveHandler} />
       </div>
     </div>
   );

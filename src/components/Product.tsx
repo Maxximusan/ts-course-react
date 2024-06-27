@@ -7,7 +7,7 @@ interface ProductProps {
 
 export const Product = (props: ProductProps) => {
 
-console.log(props);
+// console.log(props);
 const {prod} = props
 
 const [details, setDetails] = useState(false)
