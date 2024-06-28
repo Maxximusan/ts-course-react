@@ -46,7 +46,7 @@ const showHideDetails = () =>{
         
         { details && <div>
             <p> {prod.description}</p>
-             <p>Rate: <span className="font-bold">{prod.rating.rate}</span> </p>
+             <p>Rate: <span className="font-bold">{prod?.rating?.rate}</span> </p>
         </div> }
         </div>
         </>

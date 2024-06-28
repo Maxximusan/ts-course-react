@@ -5,7 +5,7 @@ import { IProduct } from '../types/models'
 import { ErrorMessage } from './ErrorMessage'
 
 const productData: IProduct = {
-    id: Date.now(),
+   
     title: '',
     price: 13.5,
     description: 'lorem ipsum set',
@@ -18,9 +18,11 @@ const productData: IProduct = {
 }
 
 
+interface CreateProductsProps {
+    onCreate: (product: IProduct) => void
+}
 
-
-export const CreateProduct = () => {
+export const CreateProduct = ({onCreate}: CreateProductsProps ) => {
 const [value, setValue] = useState('')
 const [error, setError] = useState('')
 
@@ -35,6 +37,8 @@ if( value.trim().length === 0){
 productData.title = value
 
 const responce = await axios.post<IProduct>('https://fakestoreapi.com/products', productData)
+
+onCreate(responce.data)
 }
 
 
