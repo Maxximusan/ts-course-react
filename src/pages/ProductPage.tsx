@@ -14,7 +14,7 @@ import { ModalContext} from '../context/ModalContext'
 
 
 
-export const ProductPage = () => {
+const ProductPage = () => {
     // const [modal, setModal] = useState(false)
   const {modal, open, close} = useContext(ModalContext)
  
@@ -57,3 +57,5 @@ export const ProductPage = () => {
   );
   // return React.createElement('h2', {className:'wow'}, 'HELLO')
 }
+
+export default ProductPage
