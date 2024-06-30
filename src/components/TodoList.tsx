@@ -12,14 +12,16 @@ interface IProps {
 // }
 
 const TodoList: React.FC<IProps> = (props) => {
+    console.log(props);
+    
     return (
-        <ul>
+        <ul className='px-5'>
             {props.todos.map((item) => {
                 return (
-                    <li key={item.id}>
+                    <li key={item.id} className='mb-4'>
                         <div>{ item.id}</div>
                         <div>{item.title}</div>
-                        <button onClick={props.onRemoveTodo.bind(this, item.id)}>Remove</button>
+                        <button className='bg-red-200 rounded-md' onClick={props.onRemoveTodo.bind(this, item.id)}>Remove</button>
                     </li>
                 )
             })}

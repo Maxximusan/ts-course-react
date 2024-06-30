@@ -30,12 +30,12 @@ const AddTodo: React.FC<IProps> = (props) => {
 }
 
     return (
-    <form onSubmit={submitHandler}>
-      <div>
-        <span> Add Title</span>
-         <input type='text' id='add-todo' onChange={titleHandler} />
+    <form className='px-5 mb-5' onSubmit={submitHandler}>
+      <div className='mb-3'>
+        <span className='mr-5'> Add Title</span>
+         <input className='border' type='text' id='add-todo' onChange={titleHandler} />
      </div>
-     <button type='submit'> Add Todo</button>
+     <button className='border bg-lime-200 rounded-md' type='submit'> Add Todo</button>
     </form>
 )
 }
